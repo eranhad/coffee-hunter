@@ -79,11 +79,16 @@ export default function MapView({ shops, selectedShopId, onSelectShop }: MapView
         if (!mapRef.current) return;
         const L = (await import('leaflet')).default;
 
+        // Final guard in case component unmounted during import
+        if (!mapRef.current) return;
+
         // Remove all existing markers
         markersRef.current.forEach((marker) => marker.remove());
         markersRef.current.clear();
 
         shops.forEach((shop) => {
+            if (!mapRef.current) return;
+
             const isSelected = shop.id === selectedShopId;
             const { svg, size } = createMarkerIcon(shop, isSelected);
 
@@ -96,7 +101,7 @@ export default function MapView({ shops, selectedShopId, onSelectShop }: MapView
             });
 
             const marker = L.marker([shop.lat, shop.lng], { icon, zIndexOffset: isSelected ? 1000 : 0 })
-                .addTo(mapRef.current!)
+                .addTo(mapRef.current)
                 .bindPopup(
                     `<div style="direction:rtl;font-family:Heebo,sans-serif;min-width:140px">
                         <strong style="font-size:14px;color:#1a1a2e">${shop.name}</strong>

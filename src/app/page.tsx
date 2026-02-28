@@ -15,6 +15,7 @@ export default function HomePage() {
   const [filterRating, setFilterRating] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showVerifiedOnly, setShowVerifiedOnly] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
 
   const filteredShops = useMemo<CoffeeShop[]>(() => {
     let result = coffeeShops;
@@ -95,43 +96,44 @@ export default function HomePage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ background: 'var(--primary)', color: 'white', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>☕</div>
-            <span style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>BrewFinder</span>
-          </div>
           <nav style={{ display: 'flex', gap: '24px', fontSize: '14px', fontWeight: 600 }}>
-            <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Marketplace</a>
             <a href="#" style={{ color: 'var(--text-primary)', textDecoration: 'none', borderBottom: '2px solid var(--primary)', paddingBottom: '20px' }}>Coffee Shops</a>
             <a href="#" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>My Favorites</a>
           </nav>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <button style={{ background: 'none', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', fontWeight: 600, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📥</span> Inbox <span style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px', fontSize: '11px' }}>3</span>
-          </button>
-          <button style={{ background: 'none', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 16px', fontSize: '14px', fontWeight: 600, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            My account ☰
-          </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', direction: 'ltr' }}>
+          <div style={{ background: 'var(--primary)', color: 'white', width: '32px', height: '32px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>☕</div>
+          <span style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>Coffee Hunter</span>
         </div>
       </header>
 
       {/* ── Secondary Banner ── */}
-      <div
-        style={{
-          height: '40px',
-          background: 'var(--primary-dark)',
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '13px',
-          fontWeight: 600,
-          gap: '8px',
-          zIndex: 90,
-        }}
-      >
-        <span style={{ color: '#fbbf24' }}>★</span> BrewFinder Pro &bull; Access secret menus, barista tips, and more from $4.99/month <span style={{ fontSize: '10px' }}>›</span>
-      </div>
+      {showBanner && (
+        <div
+          style={{
+            height: '40px',
+            background: 'var(--primary-dark)',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '13px',
+            fontWeight: 600,
+            gap: '8px',
+            zIndex: 90,
+            position: 'relative',
+          }}
+        >
+          <span style={{ color: '#fbbf24' }}>★</span> New: Now rating breakfast as well!
+          <button
+            onClick={() => setShowBanner(false)}
+            style={{ position: 'absolute', left: '16px', background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            aria-label="Close banner"
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       {/* ── Main Content Area ── */}
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
@@ -211,13 +213,9 @@ export default function HomePage() {
         }}
       >
         <div style={{ display: 'flex', gap: '16px' }}>
-          <span>&copy; 2026 BrewFinder</span>
+          <span>&copy; 2026 Coffee Hunter</span>
           <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
           <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
-        </div>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <span>English (US)</span>
-          <span style={{ cursor: 'pointer' }}>Resources ▾</span>
         </div>
       </footer>
 

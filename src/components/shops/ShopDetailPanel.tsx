@@ -129,7 +129,7 @@ export function ShopDetailPanel({ shop, onClose }: ShopDetailPanelProps) {
                     </div>
                 </div>
 
-                {/* Score card (BrewFinder Style) */}
+                {/* Score card (Coffee Hunter Style) */}
                 <div
                     style={{
                         background: 'white',

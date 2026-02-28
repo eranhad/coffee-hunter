@@ -40,7 +40,7 @@ export function ShopListItem({ shop, isSelected, onClick }: ShopListItemProps) {
                 if (!isSelected) e.currentTarget.style.background = 'transparent';
             }}
         >
-            {/* Thumbnail (BrewFinder Style) */}
+            {/* Thumbnail (Coffee Hunter Style) */}
             <div
                 style={{
                     width: '60px',
